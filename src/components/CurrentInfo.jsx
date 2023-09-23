@@ -1,4 +1,5 @@
 import localTime from "../utilities/LocalTime";
+import PropTypes from "prop-types";
 
 export default function CurrentInfo({ data }) {
   console.log(data.name);
@@ -13,3 +14,7 @@ export default function CurrentInfo({ data }) {
     </div>
   );
 }
+
+CurrentInfo.propTypes = {
+  data: PropTypes.object,
+};

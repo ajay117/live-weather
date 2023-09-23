@@ -1,8 +1,7 @@
+import PropTypes from "prop-types";
+
 function Greetings({ timestamp }) {
   let hours = new Date(timestamp * 1000).getHours();
-//   let minutes = new Date(timestamp * 1000).getMinutes();
-
-//   let time = `${hours}:${minutes}`;
 
   let greeting;
   if (hours >= 5 && hours < 12) {
@@ -21,3 +20,7 @@ function Greetings({ timestamp }) {
 }
 
 export default Greetings;
+
+Greetings.propTypes = {
+  timestamp: PropTypes.number,
+};
