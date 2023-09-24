@@ -1,35 +1,137 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+import { useState, useEffect } from "react";
+// import data from "./data.json";
+import Greeting from "./components/Greeting";
+import CurrentInfo from "./components/CurrentInfo";
+import ShowCase from "./components/ShowCase";
+import Background1 from "./assets/background1.jpg";
+import Background2 from "./assets/background2.jpg";
+import "./App.css";
+import Loading from "./components/Loading";
+import SearchBar from "./components/SearchBar";
+import MultipleLocations from "./components/MultipleLocations";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
+  const [location, setLocation] = useState("");
+  // const [locationList, setLocationList] = useState([]);
+  // console.log(data);
+  // console.log(Array.isArray(data));
 
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      // setLocationList(json);
+      console.log(json);
+      return json;
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
+  const handleChange = (e) => {
+    setLocation(e.target.value);
+  };
+
+  const handleClick = async (childData) => {
+    console.log(childData);
+    const lat = childData.lat;
+    const long = childData.lon;
+    const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+    console.log("handleclick");
+    let json = await fetchData(url);
+    setData(json);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setData([]);
+    let apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+    let cityName = location;
+    let limit = 5;
+    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
+    console.log("handlesubmit");
+    let json = await fetchData(url);
+    setData(json);
+  };
+
+  const isNight = new Date(data.dt * 1000).getHours() > 17 ? true : false;
+  useEffect(() => {
+    if (!location) {
+      if (!navigator.geolocation) {
+        console.log("Geolocation is not supported by your browser");
+      } else {
+        navigator.geolocation.getCurrentPosition(toDo, error);
+      }
+    }
+
+    async function toDo(position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=-${long}&appid=${apiKey}&units=metric`;
+      console.log(apiKey);
+      // const fetchData = async () => {
+      //   try {
+      //     const response = await fetch(url);
+      //     const json = await response.json();
+      //     setData(json);
+      //     console.log(json);
+      //   } catch (err) {
+      //     console.log("error", err);
+      //   }
+      // };
+
+      let json = await fetchData(url);
+      setData(json);
+    }
+
+    function error() {
+      console.log("Error cannot find location");
+    }
+  }, []);
+
+  const myStyle = {
+    backgroundImage: `url(${isNight ? Background2 : Background1})`,
+    height: "100vh",
+    // marginTop: "-70px",
+    fontSize: "50px",
+    backgroundSize: "cover",
+    backgrouundRepeat: "no-repeat",
+    // opacity: "0.8",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main style={myStyle}>
+        {Array.isArray(data) && data.length < 1 ? (
+          <Loading />
+        ) : Array.isArray(data) && data.length > 1 ? (
+          <MultipleLocations handleClick={handleClick} arr={data} />
+        ) : data.weather ? (
+          <div>
+            <SearchBar
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              location={location}
+            />
+            <div className="flex justify-evenly items-center info">
+              <Greeting timestamp={data.dt} />
+              <ShowCase icon={data.weather[0].icon} />
+              <CurrentInfo data={data} />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
