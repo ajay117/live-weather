@@ -67,7 +67,7 @@ function App() {
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
       const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=-${long}&appid=${apiKey}&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
       console.log(apiKey);
 
       let json = await fetchData(url);
