@@ -47,7 +47,7 @@ function App() {
     let apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     let cityName = location;
     let limit = 5;
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
     console.log("handlesubmit");
     let json = await fetchData(url);
     setData(json);
