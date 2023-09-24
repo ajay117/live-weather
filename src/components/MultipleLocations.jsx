@@ -8,7 +8,7 @@ export default function MultipleLocations({ arr, handleClick }) {
         <td className="p-2 text-white border-2 border-stone-50">
           {obj.country}
         </td>
-        <td>
+        <td className="cursor-pointer">
           <a
             onClick={() => handleClick(obj)}
             className="bg-transparent hover:bg-blue-500 text-slate-300 underline font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

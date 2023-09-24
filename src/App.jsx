@@ -1,7 +1,4 @@
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { useState, useEffect } from "react";
-// import data from "./data.json";
 import Greeting from "./components/Greeting";
 import CurrentInfo from "./components/CurrentInfo";
 import ShowCase from "./components/ShowCase";
@@ -11,19 +8,17 @@ import "./App.css";
 import Loading from "./components/Loading";
 import SearchBar from "./components/SearchBar";
 import MultipleLocations from "./components/MultipleLocations";
+import Footer from "./components/Footer";
 
 function App() {
   const [data, setData] = useState([]);
   const [location, setLocation] = useState("");
-  // const [locationList, setLocationList] = useState([]);
-  // console.log(data);
-  // console.log(Array.isArray(data));
 
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
       const json = await response.json();
-      // setLocationList(json);
+
       console.log(json);
       return json;
     } catch (err) {
@@ -74,16 +69,6 @@ function App() {
       const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=-${long}&appid=${apiKey}&units=metric`;
       console.log(apiKey);
-      // const fetchData = async () => {
-      //   try {
-      //     const response = await fetch(url);
-      //     const json = await response.json();
-      //     setData(json);
-      //     console.log(json);
-      //   } catch (err) {
-      //     console.log("error", err);
-      //   }
-      // };
 
       let json = await fetchData(url);
       setData(json);
@@ -108,28 +93,31 @@ function App() {
   };
   return (
     <>
-      <main style={myStyle}>
-        {Array.isArray(data) && data.length < 1 ? (
-          <Loading />
-        ) : Array.isArray(data) && data.length > 1 ? (
-          <MultipleLocations handleClick={handleClick} arr={data} />
-        ) : data.weather ? (
-          <div>
-            <SearchBar
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              location={location}
-            />
-            <div className="flex justify-evenly items-center info">
-              <Greeting timestamp={data.dt} />
-              <ShowCase icon={data.weather[0].icon} />
-              <CurrentInfo data={data} />
+      <div className="relative">
+        <main style={myStyle}>
+          {Array.isArray(data) && data.length < 1 ? (
+            <Loading />
+          ) : Array.isArray(data) && data.length >= 1 ? (
+            <MultipleLocations handleClick={handleClick} arr={data} />
+          ) : data.weather ? (
+            <div className=" px-5 md:w-3/4 lg:w-2/3">
+              <SearchBar
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                location={location}
+              />
+              <div className="flex justify-evenly items-center">
+                <Greeting timestamp={data.dt} />
+                <ShowCase icon={data.weather[0].icon} />
+                <CurrentInfo data={data} />
+              </div>
             </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </main>
+          ) : (
+            ""
+          )}
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

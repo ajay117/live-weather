@@ -3,14 +3,22 @@ import PropTypes from "prop-types";
 
 export default function CurrentInfo({ data }) {
   console.log(data.name);
+  const temperature = data.main.temp;
+  const time = localTime(data.dt);
+  const city = data.name;
+  const description = data.weather[0].description;
+
   return (
     <div className="text-white flex flex-col items-end">
-      <p className="text-7xl">{data.main.temp}&deg;</p>
+      <p className="pb-4 text-7xl">{temperature}&deg;</p>
       {data.name ? (
-        <p className="text-base font-semibold">{data.name} City</p>
+        <p className="pb-2 text-base font-semibold">{city} City</p>
       ) : null}
-      <p className="text-sm">Time: {localTime(data.dt)}</p>
-      <p className="text-base">{data.weather[0].description}</p>
+      <p className="pb-2 text-sm">Time: {time}</p>
+      <p className="pb-2 text-base">
+        {" "}
+        Weather: {`${description[0].toUpperCase()}${description.slice(1)}`}
+      </p>
     </div>
   );
 }

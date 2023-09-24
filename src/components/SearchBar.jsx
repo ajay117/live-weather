@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 export default function SearchBar({ location, handleChange, handleSubmit }) {
   return (
     <div className="flex justify-end">
-      <form className="flex gap-2.5" onSubmit={handleSubmit}>
+      <form className="flex" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
-          className="px-2 py-2 w-96 h-10 text-lg"
+          className="px-2 py-2 w-96 h-10 text-lg text-stone-600"
           type="search"
           name="cityName"
           value={location}
         />
 
-        <button type="submit">
-          <img className="w-9 h-9 fill-white" src={SearchIcon} alt="" />
+        <button type="submit" className="border-2 px-2">
+          <img className="w-6 h-6 fill-white" src={SearchIcon} alt="" />
         </button>
       </form>
     </div>
