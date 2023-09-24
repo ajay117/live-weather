@@ -35,7 +35,7 @@ If you want to run the app locally or contribute to its development, you can fol
 
 1. **Clone the Repository:**
 
-git clone https://github.com/ajay117/pocket-weather-info.git
+git clone https://github.com/ajay117/pocketweatherinfo
 cd pocket-weather-info
 
 2. **Install Dependencies:**
