@@ -21,10 +21,10 @@ export default function MultipleLocations({ arr, handleClick }) {
   });
   return (
     <div>
-      <p className="text-xl text-center font-semibold pb-3 text-slate-50">
+      <p className="text-xl text-center font-semibold mb-4 text-slate-50">
         Please choose your Location
       </p>
-      <table className="text-lg table-auto border-2 border-stone-50">
+      <table className="text-center text-lg table-auto border-2 border-stone-50">
         <thead className="text-white border-2 border-stone-50">
           <tr className="border-2 border-stone-50">
             <th className="p-2 border-2 border-stone-50">City</th>

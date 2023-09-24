@@ -14,7 +14,7 @@ function Greetings({ timestamp }) {
 
   return (
     <div>
-      <p className="text-white font-bold text-3xl">{greeting}</p>
+      <p className="text-white font-bold text-3xl lg:text-5xl">{greeting}</p>
     </div>
   );
 }

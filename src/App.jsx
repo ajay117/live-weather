@@ -100,13 +100,13 @@ function App() {
           ) : Array.isArray(data) && data.length >= 1 ? (
             <MultipleLocations handleClick={handleClick} arr={data} />
           ) : data.weather ? (
-            <div className=" px-5 md:w-3/4 lg:w-2/3">
+            <div className=" px-5 w-11/12 md:w-3/4 lg:w-2/3">
               <SearchBar
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 location={location}
               />
-              <div className="flex justify-evenly items-center">
+              <div className="flex justify-evenly items-center mt-9 md:mt-14 lg:mt-16">
                 <Greeting timestamp={data.dt} />
                 <ShowCase icon={data.weather[0].icon} />
                 <CurrentInfo data={data} />

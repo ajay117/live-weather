@@ -7,7 +7,7 @@ export default function SearchBar({ location, handleChange, handleSubmit }) {
       <form className="flex" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
-          className="px-2 py-2 w-96 h-10 text-lg text-stone-600"
+          className="px-2 py-2 w-96 h-10 text-lg lg:text-2xl text-stone-600"
           type="search"
           name="cityName"
           value={location}
