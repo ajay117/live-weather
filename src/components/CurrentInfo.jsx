@@ -1,4 +1,4 @@
-import localTime from "../utilities/LocalTime";
+import localTime from "../utilities/localTime";
 import PropTypes from "prop-types";
 
 export default function CurrentInfo({ data }) {
