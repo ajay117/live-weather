@@ -9,32 +9,31 @@ export default function Footer() {
         Ajay KC
       </a>
       . All Rights Reserved.
-
       <div className="flex gap-5 justify-center text-xs">
         <p>
           <a
-            href="https://iconscout.com/icons/weather"
+            href="https://iconscout.com/icons/global-weather"
             className="text-underline font-size-sm"
             target="_blank"
             rel="noreferrer"
           >
-            Free Ios Weather Icon
+            Free Global Weather Icon
           </a>{" "}
           by{" "}
           <a
-            href="https://iconscout.com/contributors/giulio-smedile"
+            href="https://iconscout.com/contributors/petai-jantrapoon"
             className="text-underline font-size-sm"
             target="_blank"
             rel="noreferrer"
           >
-            Giulio Smedile
+            Petai Jantrapoon
           </a>{" "}
           on{" "}
           <a
             href="https://iconscout.com"
+            className="text-underline font-size-sm"
             target="_blank"
             rel="noreferrer"
-            className="text-underline font-size-sm"
           >
             IconScout
           </a>
