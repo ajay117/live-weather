@@ -22,11 +22,18 @@ export default function Footer() {
         <a
           href="https://iconscout.com/contributors/giulio-smedile"
           className="text-underline font-size-sm"
+          target="_blank"
+          rel="noreferrer"
         >
           Giulio Smedile
         </a>{" "}
         on{" "}
-        <a href="https://iconscout.com" className="text-underline font-size-sm">
+        <a
+          href="https://iconscout.com"
+          target="_blank"
+          rel="noreferrer"
+          className="text-underline font-size-sm"
+        >
           IconScout
         </a>
       </p>

@@ -19,8 +19,6 @@ function App() {
     try {
       const response = await fetch(url);
       const json = await response.json();
-
-      console.log(json);
       return json;
     } catch (err) {
       console.log("error", err);
@@ -32,12 +30,10 @@ function App() {
   };
 
   const handleClick = async (childData) => {
-    console.log(childData);
     const lat = childData.lat;
     const long = childData.lon;
     const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
-    console.log("handleclick");
     let json = await fetchData(url);
     setData(json);
   };
@@ -50,7 +46,6 @@ function App() {
     let cityName = location;
     let limit = 5;
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
-    console.log("handlesubmit");
     let json = await fetchData(url);
     setData(json);
   };
@@ -70,7 +65,6 @@ function App() {
       const long = position.coords.longitude;
       const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
-      console.log(apiKey);
 
       let json = await fetchData(url);
       setData(json);
@@ -79,7 +73,7 @@ function App() {
     function error() {
       console.log("Error cannot find location");
     }
-  }, []);
+  }, [location]);
 
   const myStyle = {
     backgroundImage: `url(${isNight ? Background2 : Background1})`,
@@ -96,24 +90,25 @@ function App() {
   return (
     <>
       <div className="relative">
-        <img src={Logo} alt="" className="logo"/>
+        <img src={Logo} alt="" className="logo" />
         <main style={myStyle}>
           {Array.isArray(data) && data.length < 1 ? (
             <Loading />
           ) : Array.isArray(data) && data.length >= 1 ? (
             <MultipleLocations handleClick={handleClick} arr={data} />
           ) : data.weather ? (
-            <div className=" px-5 w-11/12 md:w-3/4 lg:w-2/3">
+            <div className="px-5 w-11/12 md:w-3/4 lg:w-2/3">
               <SearchBar
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 location={location}
               />
-              <div className="flex justify-evenly items-center mt-9 md:mt-14 lg:mt-16">
+
+              <section className="flex justify-evenly items-center mt-9 md:mt-14 lg:mt-16">
                 <Greeting timestamp={data.dt} />
                 <ShowCase icon={data.weather[0].icon} />
                 <CurrentInfo data={data} />
-              </div>
+              </section>
             </div>
           ) : (
             ""

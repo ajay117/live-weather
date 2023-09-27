@@ -3,13 +3,17 @@ import PropTypes from "prop-types";
 
 export default function SearchBar({ location, handleChange, handleSubmit }) {
   return (
-    <div className="flex justify-end">
-      <form className="flex" onSubmit={handleSubmit}>
+    <div>
+      <form
+        className=" flex justify-center md:justify-start"
+        onSubmit={handleSubmit}
+      >
         <input
           onChange={handleChange}
-          className="px-2 py-2 w-96 h-10 text-lg lg:text-2xl text-stone-600"
+          className="w-full  px-2 py-2 h-10 text-lg lg:text-2xl text-stone-600"
           type="search"
           name="cityName"
+          placeholder="Please enter name of city"
           value={location}
         />
 
