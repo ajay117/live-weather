@@ -9,6 +9,7 @@ import Loading from "./components/Loading";
 import SearchBar from "./components/SearchBar";
 import MultipleLocations from "./components/MultipleLocations";
 import Footer from "./components/Footer";
+import Logo from "./assets/logo.png";
 
 function App() {
   const [data, setData] = useState([]);
@@ -43,6 +44,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!location) return;
     // setData([]);
     let apiKey = import.meta.env.VITE_WEATHER_API_KEY;
     let cityName = location;
@@ -94,6 +96,7 @@ function App() {
   return (
     <>
       <div className="relative">
+        <img src={Logo} alt="" className="logo"/>
         <main style={myStyle}>
           {Array.isArray(data) && data.length < 1 ? (
             <Loading />
