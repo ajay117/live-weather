@@ -89,7 +89,67 @@ function App() {
   };
   return (
     <>
-      <div className="relative">
+      {Array.isArray(data) && data.length < 1 ? (
+        <Loading />
+      ) : (
+        <div className="relative">
+          <a href="/">
+            <img src={Logo} alt="" className="logo" />
+          </a>
+          <main style={myStyle}>
+            {Array.isArray(data) && data.length >= 1 ? (
+              <MultipleLocations handleClick={handleClick} arr={data} />
+            ) : data.weather ? (
+              <div className="px-5 w-11/12 md:w-3/4 lg:w-2/3">
+                <SearchBar
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  location={location}
+                />
+
+                <section className="flex justify-evenly items-center mt-9 md:mt-14 lg:mt-16">
+                  <Greeting timestamp={data.dt} />
+                  <ShowCase icon={data.weather[0].icon} />
+                  <CurrentInfo data={data} />
+                </section>
+              </div>
+            ) : (
+              ""
+            )}
+          </main>
+          <Footer />
+        </div>
+      )}
+
+      {/* <div className="relative">
+        <img src={Logo} alt="" className="logo" />
+        <main style={myStyle}>
+        
+
+           : Array.isArray(data) && data.length >= 1 ? (
+            <MultipleLocations handleClick={handleClick} arr={data} />
+          ) : data.weather ? (
+            <div className="px-5 w-11/12 md:w-3/4 lg:w-2/3">
+              <SearchBar
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                location={location}
+              />
+
+              <section className="flex justify-evenly items-center mt-9 md:mt-14 lg:mt-16">
+                <Greeting timestamp={data.dt} />
+                <ShowCase icon={data.weather[0].icon} />
+                <CurrentInfo data={data} />
+              </section>
+            </div>
+          ) : (
+            ""
+          )}
+        </main>
+        <Footer />
+      </div> */}
+
+      {/* <div className="relative">
         <img src={Logo} alt="" className="logo" />
         <main style={myStyle}>
           {Array.isArray(data) && data.length < 1 ? (
@@ -115,7 +175,7 @@ function App() {
           )}
         </main>
         <Footer />
-      </div>
+      </div> */}
     </>
   );
 }
