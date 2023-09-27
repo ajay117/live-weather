@@ -2,12 +2,13 @@ import PropTypes from "prop-types";
 import localTime from "../utilities/localTime";
 
 function Greetings({ timestamp }) {
-  let time = localTime(new Date(timestamp * 1000));
+  let time = localTime(new Date(timestamp));
   let hour = time.slice(0,2)
   console.log(typeof time);
 
   let greeting;
   if (time.includes("am")) {
+    console.log(time);
     greeting = "Good Morning";
   } else if (time.includes('pm') && hour < 6) {
     greeting = "Good Afternoon";

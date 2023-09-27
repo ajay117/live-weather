@@ -9,6 +9,27 @@ export default function Footer() {
         Ajay KC
       </a>
       . All Rights Reserved.
+      <p>
+        <a
+          href="https://iconscout.com/icons/weather"
+          className="text-underline font-size-sm"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Free Ios Weather Icon
+        </a>{" "}
+        by{" "}
+        <a
+          href="https://iconscout.com/contributors/giulio-smedile"
+          className="text-underline font-size-sm"
+        >
+          Giulio Smedile
+        </a>{" "}
+        on{" "}
+        <a href="https://iconscout.com" className="text-underline font-size-sm">
+          IconScout
+        </a>
+      </p>
     </div>
   );
 }

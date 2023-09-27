@@ -11,7 +11,7 @@ export default function MultipleLocations({ arr, handleClick }) {
         <td className="cursor-pointer">
           <a
             onClick={() => handleClick(obj)}
-            className="bg-transparent hover:bg-blue-500 text-slate-300 underline font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="bg-transparent border-none hover:bg-blue-500 text-slate-300 underline font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           >
             Click to View
           </a>
@@ -20,11 +20,11 @@ export default function MultipleLocations({ arr, handleClick }) {
     );
   });
   return (
-    <div>
+    <div className="w-4/5 lg:w-8/12">
       <p className="text-xl text-center font-semibold mb-4 text-slate-50">
         Please choose your Location
       </p>
-      <table className="text-center text-lg table-auto border-2 border-stone-50">
+      <table className="text-center text-lg table-auto border-2 border-stone-50 m-auto w-4/5 lg:w-8/12">
         <thead className="text-white border-2 border-stone-50">
           <tr className="border-2 border-stone-50">
             <th className="p-2 border-2 border-stone-50">City</th>

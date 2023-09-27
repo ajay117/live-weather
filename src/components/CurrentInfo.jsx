@@ -10,7 +10,7 @@ export default function CurrentInfo({ data }) {
 
   return (
     <div className="text-white flex flex-col items-end">
-      <p className="pb-4 text-7xl lg:text-8xl">{temperature}&deg;</p>
+      <p className="pb-4 text-7xl lg:text-7xl">{temperature}&deg;</p>
       {data.name ? (
         <p className="pb-2 text-base font-semibold">{city} City</p>
       ) : null}
