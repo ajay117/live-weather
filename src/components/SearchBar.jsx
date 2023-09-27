@@ -13,7 +13,7 @@ export default function SearchBar({ location, handleChange, handleSubmit }) {
           className="w-full  px-2 py-2 h-10 text-lg lg:text-2xl text-stone-600"
           type="search"
           name="cityName"
-          placeholder="Please enter name of city"
+          placeholder="Enter name of your city..."
           value={location}
         />
 

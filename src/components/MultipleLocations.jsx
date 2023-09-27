@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
+import { getName } from "country-list";
 
 export default function MultipleLocations({ arr, handleClick }) {
   const locations = arr.map((obj, index) => {
+    const country = getName(obj.country);
     return (
-      <tr className="border-2 border-stone-50 text-base" key={index}>
+      <tr className="border-2 border-stone-50 text-base bg-sla" key={index}>
         <td className="p-2 text-white border-2 border-stone-50">{obj.name}</td>
-        <td className="p-2 text-white border-2 border-stone-50">
-          {obj.country}
-        </td>
+        <td className="p-2 text-white border-2 border-stone-50">{country}</td>
         <td className="cursor-pointer">
           <a
             onClick={() => handleClick(obj)}
