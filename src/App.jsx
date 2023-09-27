@@ -14,7 +14,7 @@ import Logo from "./assets/logo.png";
 function App() {
   const [data, setData] = useState([]);
   const [location, setLocation] = useState("");
-
+console.log(data);
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);

@@ -1,5 +1,7 @@
 import localTime from "../utilities/localTime";
 import PropTypes from "prop-types";
+import SunsetImg from "../assets/sunset.png";
+import SunriseImg from "../assets/sunrise.png";
 
 export default function CurrentInfo({ data }) {
   console.log(data.name);
@@ -7,10 +9,14 @@ export default function CurrentInfo({ data }) {
   const time = localTime(data.dt);
   const city = data.name;
   const description = data.weather[0].description;
+  const sunset = localTime(data.sys.sunset);
+  const sunrise = localTime(data.sys.sunrise);
 
   return (
-    <div className="text-white flex flex-col items-end">
-      <p className="pb-4 text-2xl md:text-4xl lg:text-7xl">{temperature}&deg;</p>
+    <section className="text-white flex flex-col items-end">
+      <p className="pb-4 text-2xl md:text-4xl lg:text-7xl">
+        {temperature}&deg;
+      </p>
       {data.name ? (
         <p className="pb-2 text-sm md:text-lg font-semibold">{city} City</p>
       ) : null}
@@ -19,7 +25,18 @@ export default function CurrentInfo({ data }) {
         {" "}
         Weather: {`${description[0].toUpperCase()}${description.slice(1)}`}
       </p>
-    </div>
+
+      <div className="flex text-xs md:text-base gap-3 mt-3">
+        <p className="flex items-center">
+          <img className="w-10 lg:w-12" src={SunriseImg} alt="" />
+          <span>{sunrise}</span>
+        </p>
+        <p className="flex items-center">
+          <img className="w-10 lg:w-12" src={SunsetImg} alt="" />
+          <span>{sunset}</span>
+        </p>
+      </div>
+    </section>
   );
 }
 
