@@ -2,10 +2,9 @@ import PropTypes from "prop-types";
 import localTime from "../utilities/localTime";
 
 function Greetings({ timestamp }) {
-  let time = localTime(new Date(timestamp));
+  let time = localTime(timestamp);
   let hour = time.slice(0, 2);
-  console.log(typeof time);
-
+  
   let greeting;
   if (time.includes("am")) {
     console.log(time);
