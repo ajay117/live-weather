@@ -5,7 +5,7 @@ import SunriseImg from "../assets/sunrise.png";
 import { getName } from "country-list";
 
 export default function CurrentInfo({ data }) {
-  console.log(data.name);
+
   const temperature = data.main.temp;
   const time = localTime(data.dt);
   const city = data.name;
@@ -13,7 +13,7 @@ export default function CurrentInfo({ data }) {
   const sunset = localTime(data.sys.sunset);
   const sunrise = localTime(data.sys.sunrise);
   const country = getName(data.sys.country);
-  console.log(data.sys.country);
+
 
   return (
     <section className="text-white flex flex-col items-end ">
@@ -21,12 +21,14 @@ export default function CurrentInfo({ data }) {
         {temperature}&deg;
       </p>
       {data.name ? (
-        <p className="pb-2 text-xs md:text-base lg:text-base font-semibold">{city}, {country}</p>
+        <p className="pb-2 text-xs md:text-base lg:text-base font-semibold">
+          {city}, {country}
+        </p>
       ) : null}
-      <p className="pb-2 text-xs md:text-base lg:text-base">Time: {time}</p>
+      <p className="pb-2 text-xs md:text-base lg:text-base">{time}</p>
       <p className="pb-2 text-xs md:text-base lg:text-base">
         {" "}
-        Weather: {`${description[0].toUpperCase()}${description.slice(1)}`}
+        {`${description[0].toUpperCase()}${description.slice(1)}`}
       </p>
 
       <div className="flex text-xs md:text-base gap-3 mt-3 items-end">

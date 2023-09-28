@@ -4,17 +4,18 @@ import { getName } from "country-list";
 export default function MultipleLocations({ arr, handleClick }) {
   const locations = arr.map((obj, index) => {
     const country = getName(obj.country);
+    console.log(obj);
     return (
       <tr className="border-2 border-stone-50 text-base bg-sla" key={index}>
         <td className="p-2 text-white border-2 border-stone-50">{obj.name}</td>
         <td className="p-2 text-white border-2 border-stone-50">{country}</td>
         <td className="cursor-pointer">
-          <a
+          <button
             onClick={() => handleClick(obj)}
-            className="bg-transparent border-none hover:bg-blue-500 text-slate-300 underline font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="w-full bg-violet-500 hover:bg-blue-500 text-slate-300 font-semibold hover:text-white py-2 px-4  border-blue-500 hover:border-transparent rounded"
           >
-            Click to View
-          </a>
+            See Weather
+          </button>
         </td>
       </tr>
     );
